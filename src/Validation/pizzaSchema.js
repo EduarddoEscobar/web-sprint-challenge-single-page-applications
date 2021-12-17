@@ -8,6 +8,7 @@ const pizzaSchema = yup.object().shape({
     bacon: yup.string(),
     sausage: yup.string(),
     meatballs: yup.string(),
+    special: yup.string(),
 })
 
 export default pizzaSchema;

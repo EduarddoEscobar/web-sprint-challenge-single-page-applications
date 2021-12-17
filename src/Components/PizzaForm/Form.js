@@ -26,18 +26,20 @@ export default function Form(props){
                     type="text"
                     onChange={onChange}
                 />
+                <p>{errors.name}</p>
             </div>
 
             <div className="form-group">
                 <h3>Choice of Size:</h3>
                 <p>Required</p>
-                <select name="size" onChange={onChange}>
+                <select name="size" onChange={onChange} id="size-dropdown">
                     <option value="">Select</option>
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
-                    <option value="xl">XL</option>
+                    <option value="XL">XL</option>
                 </select>
+                <p>{errors.size}</p>
             </div>
 
             <div className="form-group">
@@ -79,6 +81,7 @@ export default function Form(props){
                     />
                     Spinach Alfredo
                 </label>
+                <p>{errors.sauce}</p>
             </div>
 
             <div className="form-group checkboxes">
@@ -108,9 +111,21 @@ export default function Form(props){
                         checked={values.meatballs}
                         onChange={onChange}
                 />
+                <p>{errors.toppings}</p>
             </div>
 
-            <button disabled={disabled}>Add to Order</button>
+            <div className="form-group">
+                <h3>Special instructions</h3>
+                <input id="special-text"
+                    name="special"
+                    value={values.special}
+                    type="text"
+                    onChange={onChange}
+                />
+                <p>{errors.special}</p>
+            </div>
+
+            <button disabled={disabled} id="order-button">Add to Order</button>
         </form>
     )
 }

@@ -8,8 +8,8 @@ import PizzaForm from "./Components/PizzaForm/PizzaForm"
 
 const App = () => {
 
-  const initialFormValues = {name:'', size:'', sauce:'', pepperoni: false, sausage: false, bacon: false, meatballs: false};
-  const initialErrorValues = {name:'', size:'', sauce:'', toppings:''};
+  const initialFormValues = {name:'', size:'', sauce:'', pepperoni: false, sausage: false, bacon: false, meatballs: false, special:''};
+  const initialErrorValues = {name:'', size:'', sauce:'', toppings:'', special:''};
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrorValues);
   const [orders, setOrders] = useState([]);
@@ -41,6 +41,7 @@ const App = () => {
       size: formValues.size,
       sauce: formValues.sauce,
       toppings: ['pepperoni', 'sausage', 'bacon', 'meatballs'].filter(topping => !!formValues[topping]),
+      special: formValues.special
     }
     postPizza(newPizza);
   }
