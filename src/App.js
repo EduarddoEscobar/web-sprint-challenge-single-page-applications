@@ -24,7 +24,7 @@ const App = () => {
 
   const update = (name, value) => {
     validate(name, value);
-    setFormValues({ ...initialFormValues, [name]: value });
+    setFormValues({ ...formValues, [name]: value });
   }
 
   const postPizza = newPizza => {
