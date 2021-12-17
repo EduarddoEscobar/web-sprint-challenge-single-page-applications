@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import * as yup from "yup";
+import pizzaSchema from './Validation/pizzaSchema';
 import {Route, Switch} from "react-router-dom";
 import HomePage from "./Components/HomePage/HomePage";
 import PizzaForm from "./Components/PizzaForm/PizzaForm"
@@ -11,8 +13,17 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrorValues);
   const [orders, setOrders] = useState([]);
+  const [disabled, setDisabled] = useState(true);
+
+  const validate = (name, value) => {
+    yup.reach(pizzaSchema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: ''}))
+      .catch(error => setErrors({...errors, [name]: error.errors[0]}))
+  }
 
   const update = (name, value) => {
+    validate(name, value);
     setFormValues({ ...initialFormValues, [name]: value });
   }
 
@@ -34,6 +45,10 @@ const App = () => {
     postPizza(newPizza);
   }
 
+  useEffect(() => {
+    pizzaSchema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
+
   return (
     <>
       <h1>Lambda Eats</h1>
@@ -44,7 +59,7 @@ const App = () => {
 
         </Route>
         <Route path="/pizza">
-          <PizzaForm values={formValues} update={update} submit={submit} errors={errors}/>
+          <PizzaForm values={formValues} update={update} submit={submit} errors={errors} disabled={disabled}/>
         </Route>
         <Route path="/">
           <HomePage />
