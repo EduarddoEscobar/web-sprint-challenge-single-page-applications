@@ -86,7 +86,6 @@ export default function Form(props){
 
             <div className="form-group checkboxes">
                 <h3>Add Toppings</h3>
-                <p>Choose up to 10</p>
                 <Topping
                         name="pepperoni"
                         value="pepperoni"

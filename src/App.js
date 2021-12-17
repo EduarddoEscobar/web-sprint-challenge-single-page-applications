@@ -29,7 +29,6 @@ const App = () => {
 
   const postPizza = newPizza => {
     axios.post('https://reqres.in/api/orders', newPizza).then(resp => {
-      console.log(resp.data);
       setOrders([resp.data, ...orders]);
     }).catch(err => console.error(err))
     .finally(() => setFormValues(initialFormValues));
@@ -53,7 +52,6 @@ const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
 
       <Switch>
         <Route path="/pizza/:pizzaID">
