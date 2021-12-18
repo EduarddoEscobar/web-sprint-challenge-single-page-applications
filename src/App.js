@@ -2,9 +2,10 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import * as yup from "yup";
 import pizzaSchema from './Validation/pizzaSchema';
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, useHistory, Link} from "react-router-dom";
 import HomePage from "./Components/HomePage/HomePage";
-import PizzaForm from "./Components/PizzaForm/PizzaForm"
+import PizzaForm from "./Components/PizzaForm/PizzaForm";
+import Order from "./Components/OrderConfirmation/Order";
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
   const [errors, setErrors] = useState(initialErrorValues);
   const [orders, setOrders] = useState([]);
   const [disabled, setDisabled] = useState(true);
+  const history = useHistory();
 
   const validate = (name, value) => {
     yup.reach(pizzaSchema, name)
@@ -30,6 +32,7 @@ const App = () => {
   const postPizza = newPizza => {
     axios.post('https://reqres.in/api/orders', newPizza).then(resp => {
       setOrders([resp.data, ...orders]);
+      history.push(`/pizza/${orders.length}`);
     }).catch(err => console.error(err))
     .finally(() => setFormValues(initialFormValues));
   }
@@ -51,11 +54,17 @@ const App = () => {
 
   return (
     <>
-      <h1>Lambda Eats</h1>
+      <header>
+        <h1>Lambda Eats</h1>
+        <nav>
+          <Link to={'/'}>Home</Link>
+          <Link to={`/pizza`}>Order</Link>
+        </nav>
+      </header>
 
       <Switch>
-        <Route path="/pizza/:pizzaID">
-
+        <Route path="/pizza/:orderID">
+          <Order orders={orders} />
         </Route>
         <Route path="/pizza">
           <PizzaForm values={formValues} update={update} submit={submit} errors={errors} disabled={disabled}/>
