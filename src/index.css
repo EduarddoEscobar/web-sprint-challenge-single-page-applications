@@ -74,3 +74,13 @@ header nav a:hover{
   text-align: center;
 }
 
+#pizza-form .sauces{
+  display: flex;
+  flex-direction: column;
+}
+
+#pizza-form .toppings{
+  display: flex;
+  flex-direction: column;
+}
+

@@ -43,8 +43,10 @@ export default function Form(props){
             </div>
 
             <div className="form-group sauces">
-                <h3>Choice of Sauce:</h3>
-                <p>Required</p>
+                <div>
+                    <h3>Choice of Sauce:</h3>
+                    <p>Required</p>
+                </div>
                 <label>
                     <input 
                         name="sauce"
@@ -84,29 +86,25 @@ export default function Form(props){
                 <p>{errors.sauce}</p>
             </div>
 
-            <div className="form-group checkboxes">
+            <div className="form-group toppings">
                 <h3>Add Toppings</h3>
                 <Topping
                         name="pepperoni"
-                        value="pepperoni"
                         checked={values.pepperoni}
                         onChange={onChange}
                 />
                 <Topping
                         name="bacon"
-                        value="bacon"
                         checked={values.bacon}
                         onChange={onChange}
                 />
                 <Topping
                         name="sausage"
-                        value="sausage"
                         checked={values.sausage}
                         onChange={onChange}
                 />
                 <Topping
                         name="meatballs"
-                        value="meatballs"
                         checked={values.meatballs}
                         onChange={onChange}
                 />
