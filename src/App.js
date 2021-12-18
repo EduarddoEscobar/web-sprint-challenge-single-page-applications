@@ -31,7 +31,7 @@ const App = () => {
 
   const postPizza = newPizza => {
     axios.post('https://reqres.in/api/orders', newPizza).then(resp => {
-      setOrders([resp.data, ...orders]);
+      setOrders([...orders, resp.data]);
       history.push(`/pizza/${orders.length}`);
     }).catch(err => console.error(err))
     .finally(() => setFormValues(initialFormValues));

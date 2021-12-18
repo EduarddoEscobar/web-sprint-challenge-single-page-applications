@@ -15,10 +15,12 @@ export default function Order(props) {
     }
 
     return (
-        <div>
+        <div className="order">
             <h1>Congratulations! The pizza is on the way</h1>
-            <h2>{order.name}</h2>
-            <p>You ordered a {order.size} {order.toppings.map(elem => elem)} pizza with {order.sauce} as the sauce. {order.special && <>And you asked for {order.special}</>}</p>
+            <div>
+                <h2>{order.name}</h2>
+                <p>You ordered a {order.size} {order.toppings.map(elem => elem + ' ')} pizza with {order.sauce} as the sauce. {order.special && <>And you asked for {order.special}</>}</p>
+            </div>
         </div>
     )
 }

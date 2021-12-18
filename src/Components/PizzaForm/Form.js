@@ -42,7 +42,7 @@ export default function Form(props){
                 <p>{errors.size}</p>
             </div>
 
-            <div className="form-group">
+            <div className="form-group sauces">
                 <h3>Choice of Sauce:</h3>
                 <p>Required</p>
                 <label>
